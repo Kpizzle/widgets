@@ -1,4 +1,17 @@
 {
     "prettier.jsxBracketSameLine": true,
-    "prettier.singleQuote": true
+    "prettier.singleQuote": true,
+    "emmet.excludeLanguages": [
+
+        "markdown"
+    ],
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    },
+    "editor.formatOnSave": true,
+    "files.exclude": {
+        ".gitignore": true,
+        ".vscode": true,
+        "node_modules/": true
+    }
 }
