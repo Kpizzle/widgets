@@ -1,26 +1,26 @@
-import React from 'react'
-import Accordion from './components/Accordion'      
-
+import React from 'react';
+import Accordion from './components/Accordion';
+import Search from './components/search';
 
 const items = [
-    {
-        title: 'What is React',
-        content: 'JS Framework'
-    },
-    {
-        title: 'Why use React',
-        content: 'Quick to learn and reap the benefits'
-    },
-    {
-        title: 'How do use react',
-        content: 'You build components'
-    }
-]
+  {
+    title: 'What is React',
+    content: 'JS Framework',
+  },
+  {
+    title: 'Why use React',
+    content: 'Quick to learn and reap the benefits',
+  },
+  {
+    title: 'How do use react',
+    content: 'You build components',
+  },
+];
 
 export default () => {
-    return (
-        <div>
-            <Accordion items={items} />
-        </div>
-    )
-}
+  return (
+    <div>
+      <Search />
+    </div>
+  );
+};
