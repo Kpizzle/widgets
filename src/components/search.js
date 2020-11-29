@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Search = () => {
-  const [term, setTerm] = useState('cheese');
+  const [term, setTerm] = useState('');
   const [results, setResults] = useState([]);
-
-  console.log(results);
 
   useEffect(() => {
     const getWikipediaResponse = async () => {
@@ -22,8 +20,18 @@ const Search = () => {
       setResults(data.query.search);
     };
 
-    if (term) {
+    if (term && !results.length) {
       getWikipediaResponse();
+    } else {
+      const timeoutId = setTimeout(() => {
+        if (term) {
+          getWikipediaResponse();
+        }
+      }, 500);
+
+      return () => {
+        clearInterval(timeoutId);
+      };
     }
   }, [term]);
 
