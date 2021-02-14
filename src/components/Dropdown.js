@@ -1,8 +1,24 @@
-import React from 'react';
-import { useState } from 'react';
+/* eslint-disable no-restricted-globals */
+import React, { useState, useEffect, useRef } from 'react';
 
 const Dropdown = ({ options, selected, onSelectedChange }) => {
   const [open, setOpen] = useState(false);
+  const ref = useRef();
+
+  useEffect(() => {
+    const onBodyClick = () => {
+      if (ref.current.contains(event.target)) {
+        return;
+      }
+      setOpen(false);
+    };
+    document.body.addEventListener('click', onBodyClick);
+
+    return () => {
+      document.body.removeEventListener('click', onBodyClick);
+    };
+  }, []);
+
   const renderedOptions = options.map((option) => {
     if (option.value === selected.value) {
       return null;
@@ -10,6 +26,7 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
 
     return (
       <div
+        data-qa={option.value}
         onClick={() => onSelectedChange(option)}
         key={option.value}
         className='item'>
@@ -19,10 +36,11 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
   });
 
   return (
-    <div className='ui form'>
+    <div ref={ref} className='ui form'>
       <div className='field'>
         <label className='label'>Select a Colour</label>
         <div
+          data-qa='drowndown'
           onClick={() => setOpen(!open)}
           className={`ui selection dropdown ${open ? 'visible active' : ''}`}>
           <i className='dropdown icon'></i>
