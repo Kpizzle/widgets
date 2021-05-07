@@ -4,6 +4,8 @@ import Search from './components/search'
 import Dropdown from './components/Dropdown'
 import Translate from './components/Translate'
 import Users from './components/Users'
+
+
 const options = [
     {
         label: 'The Colour Red',
@@ -30,17 +32,17 @@ const showAccordion = () => {
     }
 }
 const showSearch = () => {
-    if (window.Location.pathname === '/search') {
+    if (window.location.pathname === '/search') {
         return <Search />
     }
 }
 const showDropdown = () => {
-    if (window.Location.pathname === '/dropdown') {
-        return <Dropdown />
+    if (window.location.pathname === '/dropdown') {
+        return <Dropdown options={options}/>
     }
 }
 const showTranslate = () => {
-    if (window.Location.pathname === '/translate') {
+    if (window.location.pathname === '/translate') {
         return <Translate />
     }
 }
@@ -49,6 +51,9 @@ export default () => {
     return (
         <div>
             {showAccordion()}
+            {showSearch()}
+            {showDropdown()}
+            {showTranslate()}
         </div>
     )
 }
